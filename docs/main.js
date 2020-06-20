@@ -80,11 +80,10 @@ function getUserRoleColor(username) {
     let rng = new Math.seedrandom(username);
 
     return seededRandomChoice([
-        "#ffbe0b",
-        "#fb5607",
-        "#ff006e",
-        "#8338ec",
-        "3a86ff"
+        "#ABF2E8",
+        "#676BF0",
+        "#ACF3E8",
+        "#B2A5DF"
     ], rng);
 }
 
