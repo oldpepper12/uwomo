@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/3.0.5/seedrandom.min.js"></script>
+        <link rel="stylesheet" href="style.css" />
+
+        <script src="markov.js"></script>
+    </head>
+    <body>
+        <h1>uwomo bot 3000</h1>
+        <p>
+            This program generates messages based off of those sent in Discord.
+            <a
+                href="https://medium.com/analytics-vidhya/making-a-text-generator-using-markov-chains-e17a67225d10"
+                >How it works</a
+            >
+        </p>
+        <div>
+            <label for="users">Choose a person</label>
+            <select name="users" id="user-select"></select>
+            <button onclick="generate();">Generate</button>
+        </div>
+        <div id="generated" style="display: none;">
+            <div>
+                <img class="icon" src="default.png" draggable="false"/>
+            </div>
+            <div class="msg-body">
+                <span id="username">@bruh</span>
+                <span class="timestamp">Today at 4:20 AM</span>
+                <div id="generated-text">dfasjlsdkl</div>
+            </div>
+        </div>
+    </body>
+    <script src="main.js"></script>
+</html>
