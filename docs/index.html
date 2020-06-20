@@ -16,14 +16,26 @@
                 >How it works</a
             >
         </p>
-        <div>
-            <label for="users">Choose a person</label>
-            <select name="users" id="user-select"></select>
-            <button onclick="generate();">Generate</button>
+        <div class="opts">
+            <div class="opts-row">
+                <span>Person</span>
+                <select id="user-select"></select>
+            </div>
+            <div class="opts-row">
+                <span>Modifier</span>
+                <select id="mode-select">
+                    <option value="3">Drunk</option>
+                    <option value="4">Sleep Deprived</option>
+                    <option value="6" selected>Normal</option>
+                </select>
+            </div>
         </div>
+        <br>
+        <button onclick="generate();" class="generate-button">Generate</button>
+
         <div id="generated" style="display: none;">
             <div>
-                <img class="icon" src="default.png" draggable="false"/>
+                <img class="icon" src="default.png" draggable="false" />
             </div>
             <div class="msg-body">
                 <span id="username">@bruh</span>

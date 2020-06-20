@@ -20,15 +20,31 @@ function linkifyText(html) {
     return html.replace(expr, `<a href="$&">$&</a>`);
 }
 
+let msgData = null;
+
+function initMarkov(msgData, level) {
+    markovGenerators = {};
+    for (let [username, messages] of Object.entries(msgData.messages)) {
+        let markov = new MarkovTextGenerator(level);
+        markov.digest(messages)
+        markovGenerators[username] = markov;
+    }
+}
+
+function getSelectedLevel() {
+    return Number.parseInt($("#mode-select").val());
+}
+
 fetch("messages.json")
     .then((resp) => resp.json())
     .then((data) => {
-        markovGenerators = {};
-        for (let [username, messages] of Object.entries(data.messages)) {
-            let markov = new MarkovTextGenerator(5);
-            markov.digest(messages)
-            markovGenerators[username] = markov;
+        msgData = data;
+        initMarkov(msgData, getSelectedLevel());
 
+        $("#mode-select").change(()=>{
+            initMarkov(msgData, this.getSelectedLevel());
+        })
+        for (let [username, messages] of Object.entries(msgData.messages)) {
             $("#user-select").append(`
                 <option value="${username}">${realNames[username] || username}</option>
             `);

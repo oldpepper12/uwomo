@@ -42,3 +42,26 @@ body {
 a {
     color: #01B0F4;
 }
+
+.opts {
+    display: inline-block;
+}
+
+.opts-row {
+    display: grid;
+    grid-template-columns: 100px 200px;
+    padding-bottom: 5px;
+}
+
+.opts-row > *:first-child {
+    text-align: start;
+    margin-right: 10px;
+}
+
+.generate-button {
+    margin: 10px;
+    font-size: large;
+    font-family: sans-serif;
+    font-weight: 100;
+    width: 300px;
+}
