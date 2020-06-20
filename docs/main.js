@@ -15,9 +15,23 @@ function escapeHtml(unsafe) {
          .replace(/'/g, "&#039;");
 }
 
-function markdownText(html) {
+function parseDiscordEmoji(htmlString) {
+    return htmlString.replace(/<:[\w- ]+?:\d+>/g, (match)=>{
+        let emojiId = match.match(/\d+/g)[0];
+        return `<img src="https://cdn.discordapp.com/emojis/${emojiId}.png" class="emoji" />`;
+    });
+}
+
+function linkifyText(htmlString) {
     let expr = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-    return html.replace(expr, `<a href="$&">$&</a>`);
+    return htmlString.replace(expr, `<a href="$&">$&</a>`);
+}
+
+function markdownText(html) {
+    html = linkifyText(html);
+    html = parseDiscordEmoji(html);
+    
+    return html;
 }
 
 let msgData = null;
@@ -92,9 +106,9 @@ function generate() {
     let numLines = getRandomInt(1, 4);
     let text = "";
     for (let i = 0; i < numLines; i++) {
-        text += escapeHtml(getSelectedMarkov().spit())+"<br>";
+        text += getSelectedMarkov().spit()+"<br>";
     }
-    
+
     let username = $("#user-select").val();
 
     $("#username").css("color", getUserRoleColor(username)).text(username+" bot");
