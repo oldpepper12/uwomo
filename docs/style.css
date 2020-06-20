@@ -65,3 +65,8 @@ a {
     font-weight: 100;
     width: 300px;
 }
+
+.emoji {
+    width: 24px;
+    height: auto;
+}

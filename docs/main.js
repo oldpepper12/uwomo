@@ -15,7 +15,7 @@ function escapeHtml(unsafe) {
          .replace(/'/g, "&#039;");
 }
 
-function linkifyText(html) {
+function markdownText(html) {
     let expr = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
     return html.replace(expr, `<a href="$&">$&</a>`);
 }
@@ -98,6 +98,8 @@ function generate() {
     let username = $("#user-select").val();
 
     $("#username").css("color", getUserRoleColor(username)).text(username+" bot");
-    $("#generated-text").html(linkifyText(text));
+    $("#generated-text").html(markdownText(text));
+
+    twemoji.parse($("#generated-text")[0]);
 }
 
